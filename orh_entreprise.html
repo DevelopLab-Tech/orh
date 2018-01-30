@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="fr">
+<!---@ Innocent Kacou-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/windows10_icon.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Acceuil ORH</title>
+    <!--Script-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title>Orh 2018</title>
+</head>
+
+<body>
+<!--Bar de connexion-->
+<?php
+/**
+ * Created by PhpStorm.
+ * User: inno-kirito
+ * Date: 15/01/2018
+ * Time: 14:28
+ */
+?>
+
+<!-- barConnexion modal-->
+<nav id="barConnexion" class="py-1 bg-dark fixed-top">
+    <div class="container">
+        <div class="row">
+            <!-- dropdown creer compte-->
+            <div class="dropdown ml-auto mx-2">
+                <a href="#" class="dropdown-toggle  text-white" role="button" id="dropConnexion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icons8-add-user"></i> Créer un compte</a>
+                </a>
+                <div class="dropdown-menu border-primary" aria-labelledby="dropConnexion">
+                    <a href="orh_candidat.php" class="  dropdown-item ">
+                        <i class="fa fa-user-o"></i> Candidat</a>
+                    <a href="orh_entreprise.php" class=" dropdown-item  ">
+                        <i class="fa fa-building-o"></i> Entreprise</a>
+                </div>
+            </div>
+            <!-- dropdown connexion-->
+
+            <div class="dropdown  mx-2">
+                <a href="#" class="dropdown-toggle  text-white" role="button" id="dropConnexion" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icons8-add-user"></i> Connexion</a>
+                </a>
+                <div class="dropdown-menu border-primary" aria-labelledby="dropConnexion">
+                    <button class="btn btn-primary dropdown-item " data-target="#cnd" data-toggle="modal">
+                        <i class="fa fa-user-o"></i> Candidat</button>
+                    <button type="button" class="btn btn-primary dropdown-item  " data-target="#ent" data-toggle="modal">
+                        <i class="fa fa-building-o"></i> Entreprise</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>
+
+<!--Modal Connexion entreprise-->
+<div class="modal fade" id="ent" tabindex="-1" role="dialog" aria-labelledby="ent" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header py-3">
+
+                <img src="../orh2018/img/logo_ORH_fb.png" height="30"/>
+                <h5 class="modal-title ml-auto" id="connexion">ENTREPRISE</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-light text-dark">
+                <form method="post" action="php/traitement_connexion.php" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="emaila" class="form-control-label">Email :</label>
+                        <input type="email" class="form-control" id="emaila" name="emaila" required placeholder="exemple@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdpa" class="form-control-label">Mot de passe :</label>
+                        <input type="password" class="form-control" id="mdpa" name="mdpa" required placeholder="********">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-outline-primary " name="connexion" value="Connexion">
+                        <button type="button" class="btn btn-outline-danger " data-dismiss="modal">Fermer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Connexion candidat-->
+
+
+<div class="modal fade" id="cnd" tabindex="-1" role="dialog" aria-labelledby="cnd" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header py-3">
+
+                <img src="../orh2018/img/logo_ORH_fb.png" height="30"/>
+                <h5 class="modal-title ml-auto" id="connexion">   CANDIDAT</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body bg-light text-dark">
+                <form method="post" action="php/traitement_connexion.php">
+                    <div class="form-group">
+                        <label for="emaila" class="form-control-label">Email :</label>
+                        <input type="email" class="form-control" id="emaila" name="emaila" required placeholder="exemple@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="mdpa" class="form-control-label">Mot de passe :</label>
+                        <input type="password" class="form-control" id="mdpa" name="mdpa" required placeholder="********">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-outline-primary " name="connexion" value="Connexion">
+                        <button type="button" class="btn btn-outline-danger " data-dismiss="modal">Fermer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" container bg-light mt-5">
+    <header id="logoOrh" class="py-3">
+        <a href="index.php">
+            <img src="img/logo_ORH2018.png alt="logo_Orh" height="120">
+        </a>
+    </header>
+
+    <!--Carousel-->
+    <div class="row">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="img/cr_espace_entreprise.jpg" alt="First slide">
+                    <div class="carousel-caption d-md-block bgCarousel">
+                        <h5 class="text-white">Espace Entreprise</h5>
+                        <p class="text-white">Profiter pleinement des outils de ORH dans le cadre de votre recherche de candidat qualifié</p>
+                        <a href="" class="btn btn-primary">Connecter vous a votre compte entreprise</a>
+                    </div>
+                </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <!--NavBAr-->
+    <nav class="navbar navbar-expand-md navbar-light text-dark">
+        <button class="navbar-toggler btn-outline-primary  text-dark" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon text-dark"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-dark" id="navbarNav" >
+            <ul class="navbar-nav justify-content-center text-dark" >
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="index.html">Acceuil <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="orh_candidat.html">Espace Particulier</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="orh_entreprise.html">Espace Entreprise</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="orh_contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="orh_orh.html">A propos de ORH</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="corp">
+
+        <br>
+
+        <!--Formulaire Inscription-->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card border-light mb-3">
+                    <div class="card-header bg-primary"><h5 class="text-white">Vous avez deja un compte entreprise
+                            connectez-vous</h5></div>
+                    <div class="card-body text-dark">
+                        <h5 class="card-title">Informations du Compte <strong class="text-primary">Entreprise</strong>
+                        </h5>
+                        <p class="card-text">Pour acceder a toutes les fonctionalités de notre site deposez vos annonces
+                            et recruter des personnes</p>
+                        <p class="card-text">Renseignez vos information</p>
+                        <form method="post" enctype="multipart/form-data" action="php/connexionEntreprise.php">
+                            <div class="form-group">
+                                <label for="emailConnexionE">Email de connexion entreprise</label>
+                                <input type="email" class="form-control" id="emailConnexionE" name="emailConexionE"
+                                       placeholder="Entrer email entreprise">
+                            </div>
+                            <div class="form-group">
+                                <label for="mdpConnexionE">Mot de Passe</label>
+                                <input type="password" class="form-control" id="mdpConnexionE"
+                                       placeholder="Mot de Passe">
+                            </div>
+                            <button type="submit" id="validerConnexionE" name="validerConnexionE"
+                                    class="btn btn-warning btn-block text-white">Connexion
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="container bg-white mb-5">
+                    <h3 class="py-2">Créer mon Compte <strong style="color:#2baae0">Entreprise</strong></h3>
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header">Votre compte Entreprise</div>
+                        <div class="card-body">
+                            <p class="card-text">Pourquoi créer un compte <strong
+                                        style="color:#2baae0">Entreprise</strong> ? <br>
+                                Pour profiter pleinement des outils mis à votre disposition par <strong>ORH</strong>
+                                dans le cadre de votre recherche de <strong>candidat qualifié</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Informations de l'Entreprise</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="php/inscriptionEntreprise.php" method="post" enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="sigle">Sigle</label>
+                                        <input type="text" class="form-control form-control-sm" id="sigle" name="sigle"
+                                               placeholder="Sigle">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="raison_sociale">Raison Sociale</label>
+                                        <input type="text" class="form-control form-control-sm" id="raison_sociale"
+                                               name="raison_sociale" placeholder="Raison Sociale" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="tel">Telephone</label>
+                                        <input type="tel" class="form-control form-control-sm" id="tel"
+                                               placeholder="Ex:+22507072020" required name="tel">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="fax">Fax</label>
+                                        <input type="text" class="form-control form-control-sm" id="fax"
+                                               placeholder="Votre Fax" required name="fax">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="site">Site internet</label>
+                                        <input type="text" class="form-control form-control-sm" id="site"
+                                               placeholder="Ex:www.orh.com" required name="site">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="adresspos">Adresse postale</label>
+                                        <input type="text" class="form-control form-control-sm" id="adresspos"
+                                               placeholder="Votre adresse postale" required name="adresspos">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="commerce">Registre  De Commerce</label>
+                                        <input type="text" class="form-control form-control-sm" name="commerce" id="registre_com">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="contribuable">Compte Contribuable</label>
+                                        <input type="text" class="form-control form-control-sm" name="contribuable" id="compte_contrib">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="pays">Pays</label>
+                                        <select name="pays" class="form-control form-control-sm" id="pays" required>
+                                            <option value="" selected disabled>Choisissez votre pays</option>
+                                            <?php
+                                            foreach ($pays as $result){
+                                                echo "<option value='".$result['ID_PAYS']."'>".$result['LIB_PAYS']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="pays">Ville</label>
+                                        <select name="vile" class="form-control form-control-sm" id="ville" required>
+                                            <option value="" selected disabled>Choisissez votre ville</option>
+                                            <?php
+                                            foreach ($ville as $result){
+                                                echo "<option value='".$result['ID_VILLE']."'>".$result['LIB_VILLE']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="societe">Type de Societe</label>
+                                        <select name="type_soc" class="form-control form-control-sm" id="societe"
+                                                required>
+                                            <option value="" selected disabled>Choisissez votre type de société</option>
+                                            <?php
+                                            foreach ($type_soc as $result){
+                                                echo "<option value='".$result['ID_TYPE_SOC']."'>".$result['LIB_TYPE_SOC']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="juridique">Forme Juridique</label>
+                                        <select name="form_jur" class="form-control form-control-sm" id="juridique" required>
+                                            <option value="" selected disabled>Choisissez votre forme juridique</option>
+                                            <?php
+                                            foreach ($form_jur as $result){
+                                                echo "<option value='".$result['ID_FORM_JUR']."'>".$result['LIB_FORM_JUR']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="secteur">Secteurs d'Activités </label>
+                                        <select multiple name="sect_act[]" class="form-control form-control-sm" id="secteur"
+                                                required>
+                                            <option selected value="" disabled>Maintenez Ctrl pour une sélection multiple</option>
+                                            <?php
+                                            foreach ($sect_act as $result){
+                                                echo "<option value='".$result['ID_SECT']."'>".$result['LIB_SECT']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="photo">Logo</label>
+                                        <input type="file" class="form-control form-control-sm" id="photo" name="logo"
+                                               placeholder="Taille 100X100 pixels">
+                                    </div>
+                                </div>
+
+                                <div class="card-header">
+                                    <h4>Informations du Compte Entreprise</h4>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="emailInscriptionE">Email</label>
+                                        <input type="email" class="form-control form-control-sm" id="emailInscriptionE"
+                                               placeholder="Email Entreprise" required name="emailInscriptionE">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="mdp">Mot de Passe</label>
+                                        <input type="password" class="form-control form-control-sm" id="mdp"
+                                               placeholder="Mot de passe" required name="mdp">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="mdpverif">Confirmation du mot de passe</label>
+                                        <input type="password" class="form-control form-control-sm" id="mdpverif"
+                                               placeholder="Confirmer le mot de passe" required name="mdpverif">
+                                    </div>
+                                </div>
+
+                                <div class="card-header">
+                                    <h4>Informations interlocuteur</h4>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="nom">Nom</label>
+                                        <input type="text" class="form-control form-control-sm" id="nom" name="nom" placeholder="Nom" >
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="prenom">Prenom</label>
+                                        <input type="text" class="form-control form-control-sm" id="prenom" name="prenom" placeholder="Prenom" >
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="genre">Genre</label>
+                                        <select name="genre" class="form-control form-control-sm" id="genre" >
+                                            <option value="" selected disabled>Choisissez votre genre</option>
+                                            <?php
+                                            foreach ($genre as $result){
+                                                echo "<option value='".$result['ID_GENRE']."'>".$result['LIB_GENRE']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="telinter">Mobile</label>
+                                        <input type="tel" class="form-control form-control-sm" id="telinter" placeholder="0225448522"  name="telinter">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="emailinter">Email</label>
+                                        <input type="email" name="emailinter" class="form-control form-control-sm" id="emailinter" placeholder="Email interlocuteur"  >
+                                    </div>
+                                </div>
+
+                                <input type="submit" class="btn btn-outline-primary ">
+                                <input type="reset" class="btn btn-outline-danger ">
+
+
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    50%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row bande_bleu justify-content-center my-2">
+            <h4 class=" text-white"> LE GUIDE D'ORH</h4>
+        </div>
+        <br>
+
+        <!--Card-->
+        <div class="row guide_orh text-center py-3">
+            <div class="col-sm-6 col-md-4 col-lg-4 mt-4 col-12">
+                <div class="card">
+                    <img class="card-img-top" src="img/help_hand.png">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">ORH a vos coté</h4>
+                        <div class="card-text">
+                            Pour tous vos avis et informations, ORH est à votre écoute.
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="#" class="btn btn-warning">
+                            <span>Connecter vous</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-4 mt-4 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Aide en ligne</h4>
+                        <div class="card-text">
+                            <p>Que faut-il dire ou ne pas dire lors d'un entretien téléphonique ?</p>
+                            <p>Où trouver le bureau de la Mine d'ORH</p>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+
+                    </div>
+                    <img class="card-img-top" src="img/support.png">
+                </div>
+            </div>
+            <!----formation----->
+            <div class="col-sm-12 col-md-4 col-lg-4 mt-4 col-12">
+                <div class="card">
+                    <div class=" card-header">
+                        <h5 class="text-center">Formation</h5>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="index.html">Cabinet Grh</a></li>
+                        <li class="list-group-item">offres d'emploi</li>
+                        <li class="list-group-item">offres d'emploi</li>
+                        <li class="list-group-item">offres d'emploi</li>
+                        <li class="list-group-item">offres d'emploi</li>
+                        <li class="list-group-item">offres d'emploi</li>
+                        <li class="list-group-item">offres d'emploi</li>
+                    </ul>
+                    <div class="card-footer text-center">
+                        <a href="#" class="text-center">
+                            <button class="btn btn-outline-primary">En savoir plus...</button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-----bande et service pieds de page----->
+        <br>
+        <div class="row bande_bleu justify-content-center my-2">
+            <h4 class=" text-white"> Tout les services ORH</h4>
+        </div>
+        <!--------------------------Services Orh-------------------->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header">
+                        Services pour Entreprise
+                    </h5>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item ">Maitriser les Tâches Administratives du Service des Ressources humaines</li>
+                            <li class="list-group-item">Mise à Disposition des Outils de la Performance de la Gestion des Ressources Humaines</li>
+                            <li class="list-group-item">Condition de Travail</li>
+                            <li class="list-group-item">Formation</li>
+                            <li class="list-group-item">Déclarations Sociales et Diverse (déclaration cnps, disa, état 301, agepe)</li>
+                            <li class="list-group-item">Le recrutement</li>
+                            <li class="list-group-item">Formation</li>
+                            <li class="list-group-item">Gestion de la Rémunération et Fiscalité de la Masse Salariale</li>
+                            <li class="list-group-item">Audit Social</li>
+                            <li class="list-group-item">Elaboration des Procédures Qualité Rh (Recrutement-Formation-Rémunération- Evaluation)</li>
+                            <li class="list-group-item">Les fondamentaux du droit de travail</li>
+                            <li class="list-group-item"> La description des postes </li>
+                            <li class="list-group-item">Elaborer vos Tableaux de Bord des Ressources Humaines</li>
+                            <li class="list-group-item">Conception et réalisation du journal d’entreprise</li>
+                            <li class="list-group-item">Location et Gestion d’une Main d’œuvre Occasionnelle</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header">
+
+                        Accompagement pour Candidat
+                    </h5>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Dans l'elaboration des CV et lettre de motivation</li>
+                            <li class="list-group-item">pourquoi et comment faire un bilan de competence</li>
+                            <li class="list-group-item">Preparation technique et psychologique d'un entretien de recrutement</li>
+                            <li class="list-group-item">Accompagnement en strategie et communication (vers les entreprises)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card bg-dark my-3">
+                    <h5 class="card-header text-white">
+
+                        Autres Services
+                    </h5>
+                    <div class="card-body ">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-dark text-white">Externalisation de la paie</li>
+                            <li class="list-group-item bg-dark text-white">Externalisation de la gestion administrative du personnel</li>
+                            <li class="list-group-item bg-dark text-white">L’e-recrutement</li>
+                            <li class="list-group-item bg-dark text-white">Organisation d’un Service des Ressources Humaines</li>
+                            <li class="list-group-item bg-dark text-white">Stratégie Ressources Humaines</li>
+                            <li class="list-group-item bg-dark text-white">Gérer le Bilan Social en Entreprise</li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="row bande_bleu justify-content-center my-2">
+            <h4 class=" text-white"> encore plus de orh...</h4>
+        </div>
+
+        <!-----------------------footer------------------------------->
+        <div class="row">
+            <footer class="footer1">
+                <div class="container">
+                    <br><br>
+
+                    <div class="row"><!-- row -->
+
+                        <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+                            <ul class="list-unstyled clear-margins"><!-- widgets -->
+
+                                <li class="widget-container widget_nav_menu"><!-- widgets list -->
+
+                                    <h1 class="title-widget">Entreprise</h1>
+
+                                    <ul>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i> A propos</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i> Nous Contacter</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i> Solution Digital</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i> Nos produit</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i> nos services</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Accompagnement</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Outls de gestion Rh</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Manageùent des ressources</a></li>
+                                    </ul>
+
+                                </li>
+
+                            </ul>
+
+
+                        </div><!-- widgets column left end -->
+
+
+
+                        <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+
+                            <ul class="list-unstyled clear-margins"><!-- widgets -->
+
+                                <li class="widget-container widget_nav_menu"><!-- widgets list -->
+
+                                    <h1 class="title-widget">Candidat</h1>
+
+                                    <ul>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Formation</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Coaching</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Soutient</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Dossier</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Education</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Redaction Cv</a></li>
+                                        <li><a  href="#"><i class="fa fa-angle-double-right"></i>  Offres</a></li>
+                                        <li><a  href="#" target="_blank"><i class="fa fa-angle-double-right"></i> Resultat</a></li>
+
+                                    </ul>
+
+                                </li>
+
+                            </ul>
+
+
+                        </div><!-- widgets column left end -->
+
+
+
+                        <div class="col-lg-3 col-md-3"><!-- widgets column left -->
+
+                            <ul class="list-unstyled clear-margins"><!-- widgets -->
+
+                                <li class="widget-container widget_nav_menu"><!-- widgets list -->
+
+                                    <h1 class="title-widget">Liens</h1>
+
+                                    <ul>
+
+
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Accueil</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Espace entreprise</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Espace Candidat</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Services</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Formation</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Test Centres</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> Contact</a></li>
+                                        <li><a href="#"><i class="fa fa-angle-double-right"></i> ORH</a></li>
+
+                                    </ul>
+
+                                </li>
+
+                            </ul>
+
+
+                        </div><!-- widgets column left end -->
+
+
+                        <div class="col-lg-3 col-md-3"><!-- widgets column center -->
+
+
+
+                            <ul class="list-unstyled clear-margins"><!-- widgets -->
+
+                                <li class="widget-container widget_recent_news"><!-- widgets list -->
+
+                                    <h1 class="title-widget">Nous Contacter </h1>
+
+                                    <div class="footerp">
+
+                                        <h2 class="title-median">Orh Outils et solutions dediés GRH</h2>
+                                        <p><b>Email:</b> <a href="mailto:contact@orh.com">info@orh.com</a></p>
+                                        <p><b>Situation Geo / Adresse postal</b></p>
+                                        <p><b>Numero telephone : </b>7042827160, </p><br>
+                                    </div>
+
+                                    <div class="social-icons">
+
+                                        <ul class="nomargin">
+
+                                            <a href="https://www.facebook.com"><i class="fa fa-facebook-square fa-3x social-fb" id="social"></i></a>
+                                            <a href="https://twitter.com"><i class="fa fa-twitter-square fa-3x social-tw" id="social"></i></a>
+                                            <a href="https://plus.google.com"><i class="fa fa-google-plus-square fa-3x social-gp" id="social"></i></a>
+                                            <a href="mailto:contact@orh.com"><i class="fa fa-envelope-square fa-3x social-em" id="social"></i></a>
+
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!--header-->
+
+            <div class="footer-bottom">
+
+
+                <div class="row">
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                        <div class="copyright">
+
+                            © 2017 Copyright ORH
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                        <div class="design">
+
+                            <a href="index.php">ORH Outils et solutions dediés </a> |  <a target="_blank" href="https://web.facebook.com/technovoreci/">Design & Development by Technovore</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--------------------body-----------------fin---------->
+    </div>
+</div>
+<!--Reponse du serveur lors de linscription-->
+
+<!---***********Script*****************-->
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>
